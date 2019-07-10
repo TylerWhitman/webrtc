@@ -161,7 +161,13 @@ RTPVideoHeader RtpPayloadParams::GetRtpVideoHeader(
     PopulateRtpWithCodecSpecifics(*codec_specific_info, image.SpatialIndex(),
                                   &rtp_video_header);
   }
-  rtp_video_header.rotation = image.rotation_;
+  webrtc::VideoRotation rotation = image.rotation_;
+  if (rotation == kVideoRotation_90) {
+    rotation = kVideoRotation_270;
+  } else if (rotation == kVideoRotation_270) {
+    rotation = kVideoRotation_90;
+  }
+  rtp_video_header.rotation = rotation;
   rtp_video_header.content_type = image.content_type_;
   rtp_video_header.playout_delay = image.playout_delay_;
   rtp_video_header.width = image._encodedWidth;
