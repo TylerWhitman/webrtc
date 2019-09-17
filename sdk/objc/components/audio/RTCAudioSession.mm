@@ -703,15 +703,15 @@ NSString * const kRTCAudioSessionOutputVolumeSelector = @"outputVolume";
   NSError *error = nil;
   RTCAudioSessionConfiguration *webRTCConfig =
       [RTCAudioSessionConfiguration webRTCConfiguration];
-  if (![self setConfiguration:webRTCConfig active:YES error:&error]) {
-    RTCLogError(@"Failed to set WebRTC audio configuration: %@",
-                error.localizedDescription);
-    // Do not call setActive:NO if setActive:YES failed.
-    if (outError) {
-      *outError = error;
-    }
-    return NO;
-  }
+//  if (![self setConfiguration:webRTCConfig active:YES error:&error]) {
+//    RTCLogError(@"Failed to set WebRTC audio configuration: %@",
+//                error.localizedDescription);
+//    // Do not call setActive:NO if setActive:YES failed.
+//    if (outError) {
+//      *outError = error;
+//    }
+//    return NO;
+//  }
 
   // Ensure that the device currently supports audio input.
   // TODO(tkchin): Figure out if this is really necessary.
